@@ -1,0 +1,475 @@
+/* Import Google Fonts - Gaming Style */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+/* Global Styles & Cyberpunk Theme */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated Background Gradient */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Cyberpunk Grid Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main Container */
+.ctr {
+  margin: 0 auto;
+  max-width: 700px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.questions-ctr {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Progress Bar - Futuristic Style */
+.progress {
+  height: 60px;
+  margin-bottom: 30px;
+  background: rgba(15, 15, 35, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.progress::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+  background-size: 300% 100%;
+  animation: gradientMove 3s ease infinite;
+  border-radius: 12px;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow:
+    0 0 30px rgba(131, 56, 236, 0.8),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 12px 12px 0 0;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.status {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-shadow:
+    0 0 10px rgba(0, 255, 255, 0.8),
+    0 0 20px rgba(0, 255, 255, 0.5),
+    2px 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  z-index: 2;
+}
+
+/* Question Card - Glassmorphism */
+.single-question {
+  position: relative;
+  width: 100%;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.question {
+  width: 100%;
+  padding: 30px 20px;
+  font-size: 28px;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(131, 56, 236, 0.9), rgba(255, 0, 110, 0.9));
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 20px 20px 0 0;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow:
+    0 8px 32px rgba(131, 56, 236, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.question::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: questionGlow 3s linear infinite;
+}
+
+@keyframes questionGlow {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Answer Options - Neon Cards */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(15, 15, 35, 0.5);
+  backdrop-filter: blur(15px);
+  border-radius: 0 0 20px 20px;
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  border-top: none;
+}
+
+.answer {
+  padding: 20px 25px;
+  font-size: 18px;
+  width: 100%;
+  background: rgba(30, 30, 60, 0.7);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.answer::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.answer span {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 0.75em;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.answer:not(.is-answered) {
+  cursor: pointer;
+}
+
+.answer:not(.is-answered):hover {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+  border-color: #00ffff;
+  color: #00ffff;
+  transform: translateX(10px) scale(1.02);
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.6),
+    0 0 60px rgba(0, 255, 255, 0.3),
+    0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.answer:not(.is-answered):hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.answer:not(.is-answered):active {
+  transform: translateX(10px) scale(0.98);
+}
+
+/* Result Screen - Epic Reveal */
+.result {
+  width: 100%;
+  animation: resultAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes resultAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateX(0deg);
+  }
+}
+
+.title {
+  width: 100%;
+  padding: 40px 20px;
+  font-size: 42px;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(135deg, #06ffa5, #00d4ff, #8338ec);
+  background-size: 200% 200%;
+  animation: gradientMove 3s ease infinite;
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 20px 20px 0 0;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  box-shadow:
+    0 0 40px rgba(6, 255, 165, 0.5),
+    0 0 80px rgba(6, 255, 165, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  text-shadow:
+    0 0 20px rgba(6, 255, 165, 0.8),
+    0 0 40px rgba(6, 255, 165, 0.5),
+    3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.desc {
+  padding: 30px 25px;
+  font-size: 20px;
+  width: 100%;
+  background: rgba(15, 15, 35, 0.8);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(6, 255, 165, 0.3);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  color: #fff;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  line-height: 1.6;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Reset Button - Gaming Style */
+.reset-btn {
+  background: linear-gradient(135deg, #ff006e, #8338ec);
+  border: 2px solid rgba(255, 0, 110, 0.5);
+  border-radius: 50px;
+  font-size: 22px;
+  color: #fff;
+  padding: 15px 40px;
+  margin: 30px auto;
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 0 20px rgba(255, 0, 110, 0.5),
+    0 8px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.reset-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.reset-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 0 40px rgba(255, 0, 110, 0.8),
+    0 0 80px rgba(131, 56, 236, 0.5),
+    0 15px 35px rgba(0, 0, 0, 0.5);
+  border-color: #ff006e;
+}
+
+.reset-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.reset-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.reset-btn:focus {
+  outline: none;
+  box-shadow:
+    0 0 40px rgba(255, 0, 110, 0.8),
+    0 0 0 4px rgba(255, 0, 110, 0.3);
+}
+
+/* Transition Animations - Enhanced */
+.fade-enter-from {
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+}
+
+.fade-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.fade-leave-active {
+  transition: all 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  opacity: 0;
+  transform: scale(0.9) translateY(-20px);
+  position: absolute;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .question {
+    font-size: 24px;
+    padding: 25px 15px;
+  }
+
+  .title {
+    font-size: 32px;
+    padding: 30px 15px;
+  }
+
+  .answer {
+    font-size: 16px;
+    padding: 18px 20px;
+  }
+
+  .status {
+    font-size: 14px;
+  }
+
+  .reset-btn {
+    font-size: 18px;
+    padding: 12px 30px;
+  }
+
+  .progress {
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .question {
+    font-size: 20px;
+    padding: 20px 12px;
+  }
+
+  .title {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+
+  .answer {
+    font-size: 15px;
+  }
+
+  .status {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
