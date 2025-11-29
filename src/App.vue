@@ -1,7 +1,13 @@
 <template>
   <div class="ctr">
     <transition name="fade" mode="out-in">
-      <questions v-if="questionsAnswered < questions.length" :questions="questions" :questionsAnswered="questionsAnswered" @question-answered="questionAnswered($event)" />
+      <questions v-if="questionsAnswered < questions.length" 
+        :questions="questions" 
+        :questionsAnswered="questionsAnswered" 
+        :timer="timer" 
+        @question-answered="questionAnswered($event)" 
+        @time-up="questionAnswered(false)" 
+      />
       <result v-else :results="results" :totalCorrect="totalCorrect"/>
     </transition>
 
@@ -23,6 +29,8 @@ export default {
     return {
       questionsAnswered: 0,
       totalCorrect: 0,
+      timer: 10, // Ajouter cette ligne
+      timerInterval: null, // Ajouter cette ligne
       questions: [
         {
           q: 'What is 2 + 2?',
@@ -111,6 +119,11 @@ export default {
     reset() {
       this.questionsAnswered = 0;
       this.totalCorrect = 0;
+      this.resetTimer(); // Ajouter cette ligne
+    },
+    resetTimer() {
+      clearInterval(this.timerInterval);
+      this.timer = 10;
     }
   }
 };

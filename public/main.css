@@ -473,3 +473,117 @@ body::before {
     letter-spacing: 1px;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   🎮 TIMER SPINNER GAMING STYLE
+   ═══════════════════════════════════════════════ */
+
+.timer-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG Spinner */
+.timer-spinner {
+  transform: rotate(-90deg); /* Commence en haut */
+  filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+}
+
+/* Cercle de fond (gris) */
+.timer-bg {
+  fill: none;
+  stroke: #2d3436;
+  stroke-width: 8;
+  opacity: 0.3;
+}
+
+/* Cercle de progression (coloré) */
+.timer-progress {
+  fill: none;
+  stroke: url(#gradient-timer); /* On va créer un gradient */
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 326.73; /* 2 * PI * 52 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Animation de glow pulsant */
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.9));
+  }
+}
+
+/* État d'alerte (3 secondes ou moins) */
+.timer-progress.timer-warning {
+  stroke: #ff6b6b !important;
+  animation: pulse-warning 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.8));
+    stroke-width: 8;
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 107, 1));
+    stroke-width: 10;
+  }
+}
+
+/* Texte au centre du spinner */
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.timer-number {
+  display: block;
+  font-size: 36px;
+  font-weight: bold;
+  color: #667eea;
+  text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+  transition: all 0.3s ease;
+}
+
+.timer-label {
+  display: block;
+  font-size: 12px;
+  color: #b2bec3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: -5px;
+}
+
+/* Texte en mode alerte */
+.timer-text-warning .timer-number {
+  color: #ff6b6b;
+  text-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.timer-text-warning .timer-label {
+  color: #ff6b6b;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+/* Gradient pour le cercle (optionnel, à ajouter dans le SVG) */
